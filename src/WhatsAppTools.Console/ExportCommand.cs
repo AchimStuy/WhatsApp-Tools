@@ -1,4 +1,6 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 using McMaster.Extensions.CommandLineUtils;
 
@@ -15,9 +17,18 @@ namespace WhatsAppTools.Console
         [Required]
         public string Contact { get; set; }
 
-        int OnExecute()
+        int OnExecute(IConsole console)
         {
-            return 0;
+            try
+            {
+                new Core.WhatsAppTools(new FileInfo(ChatStoragePath)).Export(Contact);
+                return 0;
+            }
+            catch (Exception exc)
+            {
+                console.Error.WriteLine(exc.Message);
+                return -1;
+            }
         }
     }
 }
