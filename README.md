@@ -1,5 +1,33 @@
-# WhatsApp-Tools
+﻿# WhatsApp-Tools
 Export WhatsApp Chats from iTunes Backup to XML and render as HTML.
+
+##### Exported XML:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type ="text/xsl" href="Render-Chat-as-HTML.xslt"?>
+<Chat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Contact>491234567890</Contact>
+  <Messages>
+    <Message>
+      <IsFromMe>1</IsFromMe>
+      <MessageType>0</MessageType>
+      <Starred>1</Starred>
+      <MessageDate>2020-09-29T11:16:42+02:00</MessageDate>
+      <Text>Hallo, World! 😊</Text>
+      <ToJId>491234567890@s.whatsapp.net</ToJId>
+    </Message>
+    <Message>
+      <IsFromMe>0</IsFromMe>
+      <MessageType>0</MessageType>
+      <Starred xsi:nil="true" />
+      <MessageDate>2020-10-11T18:20:02+02:00</MessageDate>
+      <FromJId>491234567890@s.whatsapp.net</FromJId>
+      <Text>Hello, back! 🤗</Text>
+    </Message>
+  </Messages>
+</Chat>
+```
 
 ## Prerequisites
 
