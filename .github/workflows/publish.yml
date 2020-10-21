@@ -1,4 +1,4 @@
-name: .NET Core
+name: Publish
 
 on:
   push:
@@ -18,10 +18,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Publish Linux
-      run: dotnet publish -p PublishProfile=linux-x64
-    - name: Publish OS X
-      run: dotnet publish -p PublishProfile=osx-x64
-    - name: Publish Windows
-      run: dotnet publish -p PublishProfile=linux-x64
-    - name: Publish Portable
-      run: dotnet publish -p PublishProfile=portable
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64
