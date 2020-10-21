@@ -25,7 +25,7 @@ namespace WhatsAppTools.Core
 
             var exportFile = new FileInfo(Path.Combine(ChatStorageFile.DirectoryName, $"{contact}.xml"));
             using var xmlWriter = XmlWriter.Create(exportFile.FullName, new XmlWriterSettings { Indent = true });
-            new XmlSerializer(typeof(iOS.Message[])).Serialize(xmlWriter, messages);
+            new XmlSerializer(typeof(Chat)).Serialize(xmlWriter, new Chat { Contact = contact, Messages = messages });
         }
     }
 }
