@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore src/WhatsApp\ Tools.sln
     - name: Publish Linux
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64
     - name: Publish Portable
