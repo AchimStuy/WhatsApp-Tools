@@ -19,3 +19,5 @@ jobs:
       run: dotnet restore
     - name: Publish Linux
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64
+    - name: Publish Portable
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable
