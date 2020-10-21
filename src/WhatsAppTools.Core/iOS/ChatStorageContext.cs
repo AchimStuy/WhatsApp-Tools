@@ -55,7 +55,7 @@ namespace WhatsAppTools.Core.iOS
                 entity.HasIndex(e => e.Zmessagestatus)
                     .HasName("Z_WAMessage_messageStatus");
 
-                entity.HasIndex(e => e.Zmessagetype)
+                entity.HasIndex(e => e.MessageType)
                     .HasName("Z_WAMessage_messageType");
 
                 entity.HasIndex(e => e.Zparentmessage)

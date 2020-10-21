@@ -72,8 +72,7 @@ namespace WhatsAppTools.Core.iOS
         public long? Zmessagestatus { get; set; }
 
         [Column("ZMESSAGETYPE")]
-        [XmlIgnore]
-        public long? Zmessagetype { get; set; }
+        public long? MessageType { get; set; }
 
         [Column("ZSORT")]
         [XmlIgnore]
