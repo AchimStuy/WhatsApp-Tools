@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set Version
-      run: Write-Output "tag_name=v$(Get-Date -Format "yyyy.MMdd.HHmm")" >> $GITHUB_ENV
+      run: echo "tag_name=v$(Get-Date -Format "yyyy.MMdd.HHmm")" >> $GITHUB_ENV
     - name: Install dependencies
       run: dotnet restore ".\src\WhatsApp Tools.sln"
     - name: Publish Windows
