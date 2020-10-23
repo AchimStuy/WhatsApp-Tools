@@ -16,13 +16,13 @@ jobs:
     - name: Install dependencies
       run: dotnet restore ".\src\WhatsApp Tools.sln"
     - name: Publish Windows
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=win-x64 -p:Version=1.$version
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=win-x64
     - name: Publish OS X
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=osx-x64 -p:Version=1.$version
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=osx-x64
     - name: Publish Linux
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64 -p:Version=1.$version
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64
     - name: Publish Portable
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable -p:Version=1.$version
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
