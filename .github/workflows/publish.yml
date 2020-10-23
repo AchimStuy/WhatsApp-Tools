@@ -60,13 +60,14 @@ jobs:
         asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/linux-x64/WhatsAppTools.Console
         asset_name: WhatsApp-Tools.Console.LinuxX64
         asset_content_type: application/octet-stream
-    - name: Upload Portable
-      id: upload-portable
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/portable/WhatsAppTools.Console
-        asset_name: WhatsApp-Tools.Console.Portable
-        asset_content_type: application/octet-stream
+    # commented, because it needs to be zipped...
+    # - name: Upload Portable
+    #   id: upload-portable
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+    #     asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/portable/WhatsAppTools.Console
+    #     asset_name: WhatsApp-Tools.Console.Portable
+    #     asset_content_type: application/octet-stream
