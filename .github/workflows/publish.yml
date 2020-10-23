@@ -15,6 +15,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+    - name: Set Version
+      run: echo "tag_name=v`date +%Y.%m%d.%H%M`" >> $GITHUB_ENV
     - name: Install dependencies
       run: dotnet restore src/WhatsApp\ Tools.sln
     - name: Publish Linux
@@ -27,7 +29,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
+        tag_name: ${{ env.tag_name }}
     - name: Upload Release Asset
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
