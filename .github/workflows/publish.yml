@@ -11,6 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
     - name: Set Version
       run: "tag_name=v"+(Get-Date -Format "yyyy.MMdd.HHmm") >> $GITHUB_ENV
     - name: Install dependencies
