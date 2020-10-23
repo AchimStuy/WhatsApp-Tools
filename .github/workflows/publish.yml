@@ -37,3 +37,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/linux-x64/WhatsAppTools.Console
         asset_name: linux-x64
+        asset_content_type: application/octet-stream
