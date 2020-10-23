@@ -3,6 +3,7 @@
 namespace WhatsAppTools.Console
 {
     [Subcommand(typeof(ExportCommand))]
+    [Subcommand(typeof(VersionCommand))]
     public class Program
     {
         static int Main(string[] args)
