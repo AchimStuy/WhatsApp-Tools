@@ -7,7 +7,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -19,10 +19,14 @@ jobs:
       run: echo "tag_name=v`date +%Y.%m%d.%H%M`" >> $GITHUB_ENV
     - name: Install dependencies
       run: dotnet restore src/WhatsApp\ Tools.sln
+    - name: Publish Windows
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=win-x64 -p:Version=1.`date +%Y.%m%d.%H%M`
+    - name: Publish OS X
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=osx-x64 -p:Version=1.`date +%Y.%m%d.%H%M`
     - name: Publish Linux
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64 -p:Version=1.`date +%Y.%m%d.%H%M`
     - name: Publish Portable
-      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable
+      run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable -p:Version=1.`date +%Y.%m%d.%H%M`
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -30,13 +34,43 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.tag_name }}
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Windows
+      id: upload-windows
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/win-x64/WhatsAppTools.Console
+        asset_name: WhatsApp-Tools.Console.WindowsX64
+        asset_content_type: application/octet-stream
+    - name: Upload OS X
+      id: upload-osx
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/osx-x64/WhatsAppTools.Console
+        asset_name: WhatsApp-Tools.Console.OSXx64
+        asset_content_type: application/octet-stream
+    - name: Upload Linux
+      id: upload-linux
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/linux-x64/WhatsAppTools.Console
-        asset_name: linux-x64
+        asset_name: WhatsApp-Tools.Console.LinuxX64
+        asset_content_type: application/octet-stream
+    - name: Upload Portable
+      id: upload-portable
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/portable/WhatsAppTools.Console
+        asset_name: WhatsApp-Tools.Console.Portable
         asset_content_type: application/octet-stream
