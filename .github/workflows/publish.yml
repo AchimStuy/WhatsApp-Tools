@@ -37,8 +37,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/win-x64/WhatsAppTools.Console
-        asset_name: WhatsApp-Tools.Console.WindowsX64
+        asset_path: src/WhatsAppTools.Console/bin/Release/netcoreapp3.1/publish/win-x64/WhatsAppTools.Console.exe
+        asset_name: WhatsApp-Tools.Console.exe
         asset_content_type: application/octet-stream
     - name: Upload OS X
       id: upload-osx
