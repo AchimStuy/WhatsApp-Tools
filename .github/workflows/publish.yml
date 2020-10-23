@@ -18,7 +18,7 @@ jobs:
     - name: Set Version
       run: Write-Output "tag_name=v$(Get-Date -Format "yyyy.MMdd.HHmm")" >> $GITHUB_ENV
     - name: Install dependencies
-      run: dotnet restore src/WhatsApp\ Tools.sln
+      run: dotnet restore ".\src\WhatsApp Tools.sln"
     - name: Publish Windows
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=win-x64 -p:Version=1.`date +%Y.%m%d.%H%M`
     - name: Publish OS X
