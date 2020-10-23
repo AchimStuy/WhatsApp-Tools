@@ -12,32 +12,24 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set Version
-      run: echo "version=v$(Get-Date -Format "yyyy.MMdd.HHmm")" >> $env:GITHUB_ENV
+      run: echo "Version=1.$(Get-Date -Format "yyyy.MMdd.HHmm")" >> $env:GITHUB_ENV
     - name: Install dependencies
       run: dotnet restore ".\src\WhatsApp Tools.sln"
     - name: Publish Windows
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=win-x64 -p:Version=1.$version
-      env:
-        version: ${{ env.version }}
     - name: Publish OS X
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=osx-x64 -p:Version=1.$version
-      env:
-        version: ${{ env.version }}
     - name: Publish Linux
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=linux-x64 -p:Version=1.$version
-      env:
-        version: ${{ env.version }}
     - name: Publish Portable
       run: dotnet publish src/WhatsAppTools.Console/WhatsAppTools.Console.csproj -p:PublishProfile=portable -p:Version=1.$version
-      env:
-        version: ${{ env.version }}
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.version }}
+        tag_name: ${{ env.Version }}
     - name: Upload Windows
       id: upload-windows
       uses: actions/upload-release-asset@v1
