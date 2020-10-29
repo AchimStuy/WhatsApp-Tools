@@ -40,3 +40,7 @@ $> WhatsAppTools.Console export /Path/to/ChatStorage.sqlite 49123456789
 ```
 
 This will create `49123456789.xml` next to _ChatStorage.sqlite_. Opening the created XML-File in Browser will apply the Stylesheet, which renders your Chats readably.
+
+## Links
+
+[WhatsApp-Elixir](https://github.com/borun/WhatsApp-Elixir) is a Windows desktop application based on [Securcube-WhatsApp-Viewer](https://github.com/impersoft/Securcube-Whatsapp-Viewer), with which you can view and search a WhatsApp backup. I found it after finishing my work on my WhatsApp-Tools.
